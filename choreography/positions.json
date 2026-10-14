@@ -1,0 +1,49 @@
+{
+  "initial_position": "StandInit",
+  "goal_position": "Crouch",
+  "mandatory_positions": ["Sit", "SitRelax", "Stand", "StandZero", "Wipe_Forehead", "Hello"],
+  "mandatory_order_matters": false,
+  "min_intermediate_positions": 5,
+  "max_total_duration_s": 120,
+
+  "positions": {
+    "StandInit": {"kind": "posture", "script": "positions/14-StandInit.py", "duration_s": 4.4, "start_posture": "any", "end_posture": "Standing"},
+    "Crouch":    {"kind": "posture", "script": "positions/6-Crouch.py",    "duration_s": 5.3, "start_posture": "Standing", "end_posture": "Crouch"},
+    "Stand":     {"kind": "posture", "script": "positions/11-Stand.py",    "duration_s": 24.0, "start_posture": "any", "end_posture": "Standing"},
+    "StandZero": {"kind": "posture", "script": "positions/15-StandZero.py","duration_s": 4.5, "start_posture": "any", "end_posture": "Standing"},
+    "Sit":       {"kind": "posture", "script": "positions/16-Sit.py",      "duration_s": 21.8, "start_posture": "Standing", "end_posture": "Sitting"},
+    "SitRelax":  {"kind": "posture", "script": "positions/17-SitRelax.py", "duration_s": 8.6, "start_posture": "any", "end_posture": "SitRelax"},
+
+    "Wipe_Forehead": {
+      "kind": "animation",
+      "animation": "animations/Stand/Waiting/WipeForehead_1",
+      "duration_s": 5, "start_posture": "Standing", "end_posture": "Standing",
+      "note": "BLOCKED: a headless naoqi-bin registers ALAnimationPlayer but ships an EMPTY animation library (share/animations), so ALProxy fails with 'Can't find service'. This mandatory position needs a Python script instead: export the Choregraphe box to Python, or write the angleInterpolation yourself, and put it in positions/ with kind=motion."
+    },
+    "Hello": {
+      "kind": "animation",
+      "animation": "animations/Stand/Gestures/Hey_1",
+      "duration_s": 5, "start_posture": "Standing", "end_posture": "Standing",
+      "note": "Same as Wipe_Forehead: no animation assets in a headless broker, needs a Python script."
+    },
+
+    "Rotation_handgun_object": {"kind": "motion", "script": "positions/1-Rotation_handgun_object.py", "duration_s": 6, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "Right_arm":               {"kind": "motion", "script": "positions/2-Right_arm.py",               "duration_s": 16.1, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "Double_movement":         {"kind": "motion", "script": "positions/3-Double_movement.py",         "duration_s": 9, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "Arms_opening":            {"kind": "motion", "script": "positions/4-Arms_opening.py",            "duration_s": 12.8, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "Union_arms":              {"kind": "motion", "script": "positions/5-Union_arms.py",              "duration_s": 8.8, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "Move_forward":            {"kind": "motion", "script": "positions/7-Move_forward.py",            "duration_s": 6.0, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "Move_backward":           {"kind": "motion", "script": "positions/8-Move_backward.py",           "duration_s": 6, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "Diagonal_left":           {"kind": "motion", "script": "positions/9-Diagonal_left.py",           "duration_s": 6.0, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "Diagonal_right":          {"kind": "motion", "script": "positions/10-Diagonal_right.py",         "duration_s": 5, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "Rotation_foot_RLeg":      {"kind": "motion", "script": "positions/12-Rotation_foot_RLeg.py",     "duration_s": 7, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "Rotation_foot_LLeg":      {"kind": "motion", "script": "positions/13-Rotation_foot_LLeg.py",     "duration_s": 7, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+
+    "sing_with_me":    {"kind": "crg", "crg": "positions/cgrFiles/sing_with_me.crg",            "duration_s": 20, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "birthday_dance":  {"kind": "crg", "crg": "positions/cgrFiles/birthday_dance_no_sound.crg", "duration_s": 20, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "sprinkler":       {"kind": "crg", "crg": "positions/cgrFiles/sprinkler.crg",               "duration_s": 15, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "workout":         {"kind": "crg", "crg": "positions/cgrFiles/workout.crg",                 "duration_s": 25, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true},
+    "arm_dance":       {"kind": "crg", "crg": null, "duration_s": 20, "start_posture": "Standing", "end_posture": "Standing", "intermediate": true,
+                        "note": "Listed on the slides but not present in the course repo - ask the teaching assistants, or drop it from the pool."}
+  }
+}

@@ -1,0 +1,5 @@
+networkx==3.4.2
+PyYAML==6.0.2
+
+#still testing version compatibility
+#pyperplan==2.1

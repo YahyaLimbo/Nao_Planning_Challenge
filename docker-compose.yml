@@ -1,0 +1,44 @@
+
+name: nao-challenge
+
+x-naoqi-image: &naoqi-image
+  build:
+    context: .
+    dockerfile: docker/naoqi.Dockerfile
+  image: nao-challenge/naoqi:local
+  volumes:
+    - .:/workspace
+  working_dir: /workspace
+
+services:
+  sim:
+    <<: *naoqi-image
+    entrypoint: ["/usr/local/bin/entrypoint-sim"]
+    environment:
+      NAOQI_PORT: "9559"
+    ports:
+      - "127.0.0.1:9559:9559"
+  nao:
+    <<: *naoqi-image
+    depends_on:
+      - sim
+    user: "${DOCKER_UID:-0}:${DOCKER_GID:-0}"
+    environment:
+      NAO_IP: "${NAO_IP:-sim}"
+      NAO_PORT: "${NAO_PORT:-9559}"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    stdin_open: true
+    tty: true
+
+  planner:
+    build:
+      context: .
+      dockerfile: docker/planner.Dockerfile
+    image: nao-challenge/planner:local
+    user: "${DOCKER_UID:-0}:${DOCKER_GID:-0}"
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    stdin_open: true
+    tty: true

@@ -1,0 +1,10 @@
+# NAOqi SDK tarballs: licensed, large, must not be committed.
+vendor/*.tar.gz
+vendor/*.zip
+.env
+__pycache__/
+*.pyc
+choreography/out/
+scripts/env.sh
+.venv/
+.run/

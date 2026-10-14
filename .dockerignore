@@ -1,0 +1,7 @@
+.git
+.env
+positions/
+choreography/out/
+**/__pycache__
+*.pyc
+# vendor/ must NOT be ignored: the SDK tarballs are read during the build.

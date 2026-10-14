@@ -1,0 +1,8 @@
+
+services:
+  nao:
+    network_mode: host
+    depends_on: !reset []
+    environment:
+      NAO_IP: "127.0.0.1"
+      NAO_PORT: "${NAO_PORT:-9559}"
